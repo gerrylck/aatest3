@@ -1,0 +1,20 @@
+<div class="container">
+  <h2>Upload Transactions File</h2>
+  <input type="file" (change)="onFileSelected($event)">
+  <button (click)="onUpload()" [disabled]="!selectedFile">Upload</button>
+  <button (click)="downloadCsv()" [disabled]="!csvBlob">Download CSV</button>
+
+  <h3 *ngIf="csvData.length > 0">CSV Data</h3>
+  <table *ngIf="csvData.length > 0" class="table table-bordered">
+    <thead>
+    <tr>
+      <th *ngFor="let header of csvData[0]">{{ header }}</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let row of csvData.slice(1)">
+      <td *ngFor="let cell of row">{{ cell }}</td>
+    </tr>
+    </tbody>
+  </table>
+</div>
